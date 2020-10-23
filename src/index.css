@@ -247,6 +247,113 @@ ul.commentsl li{
    width: 250px;   
    z-index:100000000000;
 }
+
+
+
+.arrowud{
+    float:left;
+    width:20px;
+    height:20px;
+}
+
+.arrowud img{
+    height:30px;
+    cursor:pointer;
+}
+
+.inputd{
+    float:left;
+    width:300px;
+    max-width:300px;
+    margin-left:5px;
+}
+
+.inputd2{
+    margin-left:45px;
+}
+
+.inputd input{
+    float:left;
+    width:100%;
+
+}
+
+.inputd2 input{
+    float:left;
+    width:100%;
+
+}
+
+.choosed{
+    float:left;
+}
+
+.slided{
+    width:100%;
+    max-width:200px;
+    margin-left:45px;
+    float:left;    
+}
+
+.piesresp{
+    width:100%;
+    width:400px;
+    margin-top:20px;
+}
+
+.piesresp{
+    width:100%;
+    width:400px;
+    margin-top:20px;
+}
+
+.deleteitem{
+    float:left;
+    background-color:red;
+    color:white;  
+    margin-left:20px;
+}
+
+.inputd2{
+    margin-left:40px;
+}
+
+.buttons{
+    margin-left:45px;
+}
+.button1{
+    background-color:blue;
+    color:white;
+}
+
+.button2{
+    background-color:green;
+    color:white;
+}
+
+.button3{
+    background-color:green;
+    color:white;
+    margin-left:40px;
+}
+
+
+.button6{
+    background-color:black;
+    color:white;
+    margin-left:40px;
+    margin-top:20px;
+}
+
+.inp2{
+    margin-left:40px;
+}
+
+.button4{
+    background-color:orange;
+    color:white;
+}
+
 @media only screen and (max-width: 768px) {
 
  
@@ -262,6 +369,16 @@ ul.commentsl li{
  
  .leftbutton{
     float:left;
+}
+
+.inputd{
+    width:200px;
+}
+
+.piesresp{
+    width:100%;
+    min-width:310px;
+    margin-top:20px;
 }
  
 }

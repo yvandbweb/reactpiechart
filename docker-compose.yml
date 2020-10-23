@@ -1,0 +1,9 @@
+webappreact:
+  image: reactpiechart
+  ports:
+    - "8282:3000"
+  volumes:
+    - "/home/yvan/reactapps/reactpiechart:/home/reactpiechart"
+    - "/home/reactpiechart/node_modules"
+#    - "/home/reactpiechart/.git/:/null"
+  tty: true
