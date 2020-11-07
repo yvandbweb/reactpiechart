@@ -295,16 +295,23 @@ ul.commentsl li{
     float:left;    
 }
 
-.piesresp{
+.slided2{
     width:100%;
-    width:400px;
-    margin-top:20px;
+    max-width:500px;
+    float:left;  
+    margin-left:45px;
 }
 
 .piesresp{
     width:100%;
     width:400px;
     margin-top:20px;
+    margin-bottom:20px;
+}
+
+#pies{
+width: 100%; text-align:center; margin: auto; 
+    background-color:white;
 }
 
 .deleteitem{
@@ -342,7 +349,7 @@ ul.commentsl li{
     background-color:black;
     color:white;
     margin-left:40px;
-    margin-top:20px;
+    margin-top:8px;
 }
 
 .inp2{
@@ -354,6 +361,32 @@ ul.commentsl li{
     color:white;
 }
 
+#can{
+    background-color:white;
+}
+
+.reddy{
+    color:red;
+    margin-left:42px;
+}
+.radiotext{
+    margin-top:3px;
+    margin-bottom:3px;
+    margin-right:5px;
+    margin-left:5px;
+    float:left;
+}
+
+.radiobut{
+    float:left;
+    margin-right:5px;
+}
+.bgfontcontainer{
+    float:left;
+}
+.radios{
+    float:right;
+}
 @media only screen and (max-width: 768px) {
 
  
@@ -376,9 +409,60 @@ ul.commentsl li{
 }
 
 .piesresp{
-    width:100%;
-    min-width:310px;
+    width:310px;
     margin-top:20px;
 }
+
+.slided2{
+    display:none;    
+}
+
+
  
+#can{
+    height:100%;
+     width:300px;
+    margin:auto;
+    margin-top:20px;
+    font-size:55px;
+}
+
+#pies{
+
+}
+.piesresp{
+    margin-bottm:20px;
+}
+.radios{
+    float:left;
+}
+}
+
+@media only screen and (min-width: 768px) {
+
+.slided2{
+    display:block;
+}
+ 
+
+
+}
+
+.bgfont{
+    float:left;
+    margin-right:3px;
+}
+
+.bgfont1{
+    float:left;
+}
+
+
+.radiobut{
+    margin-right:8px ! important;
+}
+
+.row {
+    margin-right: 0 ! important;
+    margin-left: 0 ! important;
 }

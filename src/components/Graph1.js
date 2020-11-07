@@ -6,7 +6,7 @@ import App from './../App';
 class Graph1 extends Component {
   render() {
     return (
-          <App graph="graph1" /> 
+          <App graph="1" /> 
     );
   }
 }

@@ -3,152 +3,125 @@ import logo from './logo.svg';
 import { render } from "react-dom";
 import PieChart1 from './components/PieChart1';
 import PieElements from './components/PieElements';
+import { Slider } from '@material-ui/core';
 
 class App extends Component { 
-    state = {style: "",colorScale:[],data:[]};
+    API = 'https://www.ydbweb.com/symfwebservice/serv/'; 
+    
+    marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,label: '40%',},{value: 60,label: '60%',},{value: 80,label: '80%',},{value:100,label:'100%'}];
+    state = {data:undefined,loading:true};
     constructor(props) {
       super(props);
       const index=0;
       const color=0;
       const whichgraph="";
-      const whichgraphcol="";      
+      const graphsizepie="";
+      const graphlegendType="";
+      const graphBgcolor="";
+      const graphFontcolor="";
+      const sizepie=undefined;
+      const legendType=undefined;
+      const Bgcolor=undefined;
+      const Fontcolor=undefined;     
       this.handleChangeElementName = this.handleChangeElementName.bind(this);
       this.handleChangeElementColor= this.handleChangeElementColor.bind(this);
       this.handleChangeElementArrowUp= this.handleChangeElementArrowUp.bind(this);
       this.getSliderValue= this.getSliderValue.bind(this);
       this.DeleteElement= this.DeleteElement.bind(this);
       this.newElement= this.newElement.bind(this);
-      this.resetAll= this.resetAll.bind(this);
-      
-      
-      
-      
-     
+      this.resetAll= this.resetAll.bind(this);           
+      this.LoadingSpinner= this.LoadingSpinner.bind(this); 
     }       
     LoadFirstData(){
-        if (this.props.graph=="graph1")
-            this.loadgraph1()
-        if (this.props.graph=="graph2")
-            this.loadgraph2()     
-    
-
+        fetch(this.API + this.props.graph)
+          .then(response => response.json())
+          .then(data => this.loadgraph(this.props.graph,data));         
+                   
     }
     
     safeToLocalStorageData(datarray){
         localStorage.setItem(this.whichgraph, JSON.stringify(datarray));          
     }    
-    
-    safeToLocalStorageColor(colorarray){
-        localStorage.setItem(this.whichgraphcol, JSON.stringify(colorarray));  
-         
-    }
+   
     
     resetAll(){
         localStorage.removeItem(this.whichgraph);
-        localStorage.removeItem(this.whichgraphcol);
-
-        if (this.props.graph=="graph1")
-            this.loadgraph1()
-        if (this.props.graph=="graph2")
-            this.loadgraph2() 
+        localStorage.removeItem(this.graphsizepie); 
+        localStorage.removeItem(this.graphlegendType); 
+        localStorage.removeItem(this.graphBgcolor);
+        localStorage.removeItem(this.graphFontcolor);
+        
+        window.location.reload();
+                            
     }
     
+    LoadingSpinner(){
+        return (
+                <div className="overlay"><img src={process.env.PUBLIC_URL + '/images/200.gif'} alt="Logo" /></div>
+        );
+    }      
     
-    loadgraph1(){
-        
-        const dat1={ labels: { fill: "blue", fontSize: 20, fontWeight: "bold" } };
-        this.whichgraph="graph1data";
-        this.whichgraphcol="graph1color";
+    loadgraph(id,data) {   
+        this.whichgraph="graph"+id+"data";
+        this.graphsizepie="graph"+id+"sizepie";
+        this.graphlegendType="graph"+id+"legendType";
+        this.graphBgcolor="graph"+id+"Bgcolor";
+        this.graphFontcolor="graph"+id+"Fontcolor";        
         if (localStorage.getItem(this.whichgraph)==undefined){
-            this.graph1=[
-                { name: 'Group A', value: 10 },
-                { name: 'Group B', value: 30 },
-                { name: 'Group C', value: 50 },
-                { name: 'Group D', value: 20 },
-              ];  
-
-            this.colorgraph1= ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-            localStorage.setItem(this.whichgraph, JSON.stringify(this.graph1));
-            localStorage.setItem(this.whichgraphcol, JSON.stringify(this.colorgraph1));                       
-          }
-          
-        this.setState({style: dat1});
-        this.setState({colorScale: JSON.parse(localStorage.getItem(this.whichgraphcol))});
-        this.setState({data: JSON.parse(localStorage.getItem(this.whichgraph))});          
-                 
-        
-
-    }    
-    
-    loadgraph2(){        
-        const dat1={ labels: { fill: "blue", fontSize: 20, fontWeight: "bold" } };
-        this.whichgraph="graph2data";
-        this.whichgraphcol="graph2color";
-        if (localStorage.getItem(this.whichgraph)==undefined){
-            this.graph2=[
-                { name: 'Group F', value: 10 },
-                { name: 'Group L', value: 20 },
-                { name: 'Group M', value: 30 },
-                { name: 'Group P', value: 60 },
-                { name: 'Group O', value: 10 },
-              ];  
-
-              this.colorgraph2= ['#0488FE', '#00C99F', '#FFBC28', '#FF7842', '#FF8042'];
-
-            localStorage.setItem(this.whichgraph, JSON.stringify(this.graph2));
-            localStorage.setItem(this.whichgraphcol, JSON.stringify(this.colorgraph2));
+            localStorage.setItem(this.whichgraph, JSON.stringify(data.graphdatas));
+            localStorage.setItem(this.graphsizepie, JSON.stringify(data.size));
+            localStorage.setItem(this.graphlegendType, data.legendType);
+            localStorage.setItem(this.graphBgcolor, data.graphBackgroundColor);
+            localStorage.setItem(this.graphFontcolor, data.graphFontColor); 
             
-
           }
-        this.setState({style: dat1});
-        this.setState({colorScale: JSON.parse(localStorage.getItem(this.whichgraphcol))});
-        this.setState({data: JSON.parse(localStorage.getItem(this.whichgraph))});          
-    }        
+        
+        this.sizepie=JSON.parse(localStorage.getItem(this.graphsizepie));
+        this.legendType=localStorage.getItem(this.graphlegendType);
+        this.Bgcolor=localStorage.getItem(this.graphBgcolor);
+        this.Fontcolor=localStorage.getItem(this.graphFontcolor); 
+        this.setState({data: JSON.parse(localStorage.getItem(this.whichgraph))});
+        this.setState({loading:false})
+        
+        
+        
+    } 
         
     
-      componentDidMount() {
-      
- this.LoadFirstData();
+  componentDidMount() {
+     this.setState({loading:true})
+     this.LoadFirstData();                    
   }
   
-    DeleteElement(event){
+  DeleteElement(event){
      const i=event.target.getAttribute('index');
      
      const tmp = this.state.data.map(l => Object.assign({}, l));
-     const tmp2 = this.state.colorScale; 
      const newdata=[];
-     const newcolor=[];
      let countindex=0;
      
      {this.state.data.map((value, index) => {
              if (index!=i){
                newdata[countindex]=tmp[index]; 
-               newcolor[countindex]=tmp2[index]; 
                countindex++;
              }                          
      })}
 
    
      this.setState({data:newdata});  
-     this.setState({colorScale:newcolor});
      
      this.safeToLocalStorageData(newdata);
-     this.safeToLocalStorageColor(newcolor);
 
-    }  
+  }  
     
-    newElement(input){
+  newElement(input){
      const tmp4 = this.state.data.map(l => Object.assign({}, l));
-     const tmp2 = this.state.colorScale;
-     tmp4[tmp4.length]={name:input,value:10}
-     tmp2[tmp2.length]='#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+     const randomcolor='#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+     tmp4[tmp4.length]={name:input,value:10,color:randomcolor}
      this.setState({data:tmp4});  
-     this.setState({colorScale:tmp2});
      this.safeToLocalStorageData(tmp4);
-     this.safeToLocalStorageColor(tmp2);
         
-    }
+  }
   
   handleChangeElementName(event){ 
      const tmp = this.state.data.map(l => Object.assign({}, l)); 
@@ -163,13 +136,13 @@ class App extends Component {
  }    
  
   handleChangeElementColor(color,ind){ 
-     const tmp2 = this.state.colorScale; 
-     tmp2[ind]=color.hex;
- 
+     const tmp = this.state.data.map(l => Object.assign({}, l)); 
+     tmp[ind].color=color.hex;
    
-     this.setState({colorScale:tmp2});
+     this.setState({data:tmp});
      
-     this.safeToLocalStorageColor(tmp2);
+     this.safeToLocalStorageData(tmp);
+     
  }   
  
  handleChangeElementArrowUp(event){
@@ -177,20 +150,14 @@ class App extends Component {
      const i=event.target.getAttribute('a-key');
      
      const tmp = this.state.data.map(l => Object.assign({}, l));
-     const tmp2 = this.state.colorScale; 
      const up = tmp[i-1];
-     const up2 = tmp2[i-1];
      tmp[i-1]=tmp[i];
-     tmp2[i-1]=tmp2[i];
      tmp[i]=up;
-     tmp2[i]=up2;
 
    
      this.setState({data:tmp});  
-     this.setState({colorScale:tmp2});
      
      this.safeToLocalStorageData(tmp);
-     this.safeToLocalStorageColor(tmp2);
      
      
  }
@@ -202,24 +169,19 @@ getSliderValue(event, number ,index){
      
      this.safeToLocalStorageData(tmp);
 }
-    
-    
-  
-
-  
-
-    
-
     render(){   
-       
       return (
+            <div>
+            {this.state.loading ? this.LoadingSpinner():false}
+            {this.state.data != undefined &&
             <div className="row">
+    
                 <div className="col-sm-6">
-                    <input type="button" className="button6" value="Reset" onClick={this.resetAll} />
-                    <PieElements                 
-                        data={this.state.data}  
-                        colorScale={this.state.colorScale}
-                        style={this.state.style}
+                <input type="button" className="button6" value="Reset" onClick={this.resetAll} /> 
+                    <div className="clear"></div>
+                    <PieElements          
+                        sizepie={this.sizepie}
+                        data={this.state.data}                         
                         handleChangeElementName = {this.handleChangeElementName}
                         handleChangeElementColor={this.handleChangeElementColor}
                         handleChangeElementArrowUp={this.handleChangeElementArrowUp}
@@ -229,13 +191,24 @@ getSliderValue(event, number ,index){
                     />
                 </div>                                                                              
                 <div className="col-sm-6">
-                    <PieChart1                 
-                        data={this.state.data}  
-                        colorScale={this.state.colorScale}
-                        style={this.state.style}
-                    />
-                </div>               
+                    {this.state.data.length>0 &&
+                        <PieChart1                 
+                            data={this.state.data}  
+                            sizepie={this.sizepie}
+                            wichgraph={this.graphsizepie}
+                            wichlegend={this.graphlegendType}
+                            legendType={this.legendType}
+                            wichgraphBgcolor={this.graphBgcolor}
+                            whichgraphFontcolor={this.graphFontcolor}    
+                            graphBgcolor={this.Bgcolor}
+                            graphFontcolor={this.Fontcolor}                          
+                        />
+                    }
+                </div>
+                
+                
             </div>
+            }</div>
       );
     }
 }

@@ -21,19 +21,21 @@ class PieElements extends Component {
     constructor(props) {
       super(props);
       this.value1=0;
+      this.maxlenght=20;
       this.valuetext=this.valuetext.bind(this);
       this.newElementInput=this.newElementInput.bind(this);
       this.newElement1=this.newElement1.bind(this);
       this.showsaveFunc=this.showsaveFunc.bind(this);
       this.showcloseFunc=this.showcloseFunc.bind(this);
       this.handleDownload=this.handleDownload.bind(this);
-      this.state = {inputtedElement: "",showSave:false}      
+      this.state = {inputtedElement: "",showSave:false,sizepie:undefined}      
       
     } 
         
     
     handleDownload(){
-        saveSvgAsPng.saveSvgAsPng(document.getElementsByClassName("recharts-surface")[0], 'pie.png', imageOptions);
+        var canvas = document.getElementById("can");     
+        downloadjs(canvas.toDataURL("image/png"));
     };    
     
     showsaveFunc(){
@@ -62,6 +64,12 @@ class PieElements extends Component {
 valuetext(value) {
    this.value1=value;
 }
+
+setImagesize(e,numb){
+    this.setState({sizepie:numb});
+    localStorage.setItem(this.graphsizepie, JSON.stringify(numb));
+
+}
     
  render() {
 const marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,label: '40%',},{value: 60,label: '60%',},{value: 80,label: '80%',},{value:100,label:'100%'}];     
@@ -71,21 +79,21 @@ const marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,labe
                 return <div key={index}>   
                         <div className="arrowud">
                         {index != 0 && 
-                                <img src={window.location.origin + "/images/up.png"} a-key={index} onClick={this.props.handleChangeElementArrowUp} />}
+                                <img src={`${process.env.PUBLIC_URL}/images/up.png`} onClick={this.props.handleChangeElementArrowUp} />}
                         </div>
                         <div className="arrowud">
                         {index < this.props.data.length-1 && 
-                                <img src={window.location.origin + "/images/down.png"} a-key={index+1} onClick={this.props.handleChangeElementArrowUp}/>}                      
+                                <img src={`${process.env.PUBLIC_URL}/images/down.png`} a-key={index+1} onClick={this.props.handleChangeElementArrowUp}/>}                      
                         </div>  
                         <div className="choosed"> 
                         <PieChooseColor
-                            color={this.props.colorScale[index]} 
+                            color={value.color} 
                             index={index} 
                             handleChangeElementColor={this.props.handleChangeElementColor} 
                         />
                         </div>                        
                         <div className="inputd">
-                            <input type="text" a-key={index} value={value.name} onChange={this.props.handleChangeElementName} />
+                            <input type="text" a-key={index} maxLength={this.maxlenght} value={value.name} onChange={this.props.handleChangeElementName} />
                         </div>                        
                         <div className="clear"></div>                        
                         <div className="slided">
@@ -93,7 +101,7 @@ const marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,labe
                                 defaultValue={value.value}
                                 getAriaValueText={this.valuetext}
                                 aria-labelledby="discrete-slider-custom"
-                                step={10}
+                                step={1}
                                 valueLabelDisplay="auto"
                                 marks={marks}                        
                             />     
@@ -102,24 +110,31 @@ const marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,labe
                         <div className="clear"></div>
                       </div>                     
              })}
+ 
             <div className="buttons"> 
-                {this.state.showSave == false && 
+                {this.state.showSave == false && this.props.data.length!=12 && 
                <input type="button" className="button1" value="Add a new item" onClick={this.showsaveFunc} />
                }     
-                {this.state.showSave == true && 
+                {this.state.showSave == true &&
                <input type="button" className="button2" value="Hide textbox" onClick={this.showcloseFunc} />                  
                }      
                <input type="button" className="button4" onClick={this.handleDownload} value="Download Pie" />
             </div>  
             <div className="clear"></div>
-            {this.state.showSave == true && 
+            {this.state.showSave == true && this.props.data.length!=12 &&
                 <div className="inputd">
-                    <input type="text" className="inputd2" value={this.state.inputtedElement} onChange={this.newElementInput} />
+                    <input type="text" className="inputd2" maxLength={this.maxlenght} value={this.state.inputtedElement} onChange={this.newElementInput} />
                     <input type="button" className="button3" value="save" onClick={this.newElement1} />        
                 </div> 
             }
             <div className="clear"></div>
-       </div>
+            {this.props.data.length==12 && 
+                <div className="inputd">
+                    <span className="reddy">Maximum items reached</span>
+                </div> 
+            }           
+            <div className="clear"></div>
+            </div>
     );
   }
 }    
