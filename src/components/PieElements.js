@@ -79,7 +79,7 @@ const marks = [{value: 0,label: '0%',},{value: 20,label: '20%',},{value: 40,labe
                 return <div key={index}>   
                         <div className="arrowud">
                         {index != 0 && 
-                                <img src={`${process.env.PUBLIC_URL}/images/up.png`} onClick={this.props.handleChangeElementArrowUp} />}
+                                <img src={`${process.env.PUBLIC_URL}/images/up.png`} a-key={index} onClick={this.props.handleChangeElementArrowUp} />}
                         </div>
                         <div className="arrowud">
                         {index < this.props.data.length-1 && 

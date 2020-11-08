@@ -4,56 +4,9 @@ body {
   font-family: sans-serif;
 }
 
-
-.listreactpost {
-  min-height:200px;
-  margin: 10px;
-  
-  
-}
- 
-
- 
-
-.listreactpost ol li span{
-}
-
-.listreactpost:hover{
-background-color:white;
-}
- 
-li .pp {
-  font: 15px/1.5 Helvetica, sans-serif;
-  padding-left: 5px;
-  color: #555;
-}
- 
-
-
-.deletepostcom{
-    float:left;
-    margin-left:0px;
-
-}
-
-.deletepostcom.number{
-    float:left;
-
-}
-
-
 .clear{
     line-height:0;
     clear:both;
-}
-
-.postedby{
-    float:left;
-    font-weight:bold;
-}
-
-.deletepostcom #nav span:after{
-   display:none;
 }
 
 ul.pagination {
@@ -121,15 +74,6 @@ footer {
   text-align:center;
 }
 
-.hide1{
-    display:none;
-}
-
-.show1{
-    display:block;
-}
-
-
 .container-fluid{
     margin:0;padding:0;
 }
@@ -160,95 +104,7 @@ footer {
     font-size:28px;
 }
 
-.formspost input{
-    width:30%;
-    float:left;
-}
-
-.formextarea{
-    width:500px;
-    height:100px
-}
-.column{
-    width:40%;
-}
-
-.formspost submit{
-    width:5%;
-    float:left;
-}
-
-.onef{
-    float:left;
-    margin-top:20px;
-}
-
-.topsrchcolor{
-    background-color: #f2f1f0;
-    padding-bottom:20px;
-    
-}
-ul.commentsl{
-   margin-top:10px;; 
-}
-ul.commentsl li{
-   list-style-type:none; 
-}
-ul.commentsl li{
-   font-size:12px;
-   padding:10px;
-   height:100%;
-   margin-bottom:10px;
-}
-
-.norm{
-    font-weight:normal;
-}
-
-.listreactpost  .usersli{
-    min-height:80px;
-}
-.listreactpost .userscomment{
-    min-height:50px;
-}
-
-.rghtbutton{
-    float:left;
-    margin-top:5px;
-    margin-bottom:5px;
-    padding:0;
-    width:100%;
-}
-
-.leftbutton{
-    float:right;
-    margin-top:5px;
-    margin-bottom:5px;
-    padding:0;
-}
-
-.overlay{
-    position:absolute;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    background-color:black;
-    z-index:10000000000;
-    opacity: 0.5;
-}
-.overlay img{
-   height: 250px;
-   left: 50%;
-   margin-top: -125px;
-   margin-left: -125px;
-   position: absolute;
-   top: 50%;
-   width: 250px;   
-   z-index:100000000000;
-}
-
-
+/*begin custom part*/
 
 .arrowud{
     float:left;
@@ -443,18 +299,7 @@ width: 100%; text-align:center; margin: auto;
 .slided2{
     display:block;
 }
- 
 
-
-}
-
-.bgfont{
-    float:left;
-    margin-right:3px;
-}
-
-.bgfont1{
-    float:left;
 }
 
 
@@ -465,4 +310,13 @@ width: 100%; text-align:center; margin: auto;
 .row {
     margin-right: 0 ! important;
     margin-left: 0 ! important;
+}
+
+.bgfont{
+    float:left;
+    margin-right:3px;
+}
+
+.bgfont1{
+    float:left;
 }
