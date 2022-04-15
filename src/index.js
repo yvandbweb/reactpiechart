@@ -9,37 +9,26 @@ import './index.css';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 const routing = (
-        
 
-        <div className="page-container">
+
+        <div>
             <Router>
-                <div className="row1">                        
-                <div className="react">A React Pie Chart generator</div>
-                <ul>
-                  <li className="tmp">
+                <ul className="ul1">
+                  <li>
                     <Link to={`${process.env.PUBLIC_URL}/`}><u>Graph1</u></Link>
                   </li>
-                  <li  className="tmp">
+                  <li>
                     <Link to={`${process.env.PUBLIC_URL}/graph2`}><u>Graph2</u></Link>
                   </li>
-                </ul>                
-                </div> 
-                <div className="row centered">
+                </ul>
                 <Switch>
                   <Route exact path={`${process.env.PUBLIC_URL}/`} component={Graph1} />
-                  <Route exact path={`${process.env.PUBLIC_URL}/graph2`} component={Graph2} />        
-                </Switch>  
-                </div>
-            </Router> 
-            <footer className="fixed-bottom">
-              <div className="footer-copyright text-center py-3">© {(new Date().getFullYear())} Copyright:
-                ydbweb.com
-              </div>
-            </footer>   
+                  <Route exact path={`${process.env.PUBLIC_URL}/graph2`} component={Graph2} />
+                </Switch>
+            </Router>
         </div>
-     
+
 
 
 )
 ReactDOM.render(routing, document.getElementById('root'))
-
