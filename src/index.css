@@ -11,7 +11,7 @@ body {
 
 ul.pagination {
   display: inline-block;
-  
+
 }
 
 .pagination li {
@@ -46,8 +46,7 @@ ul.pagination {
    font-size: 13px;
    width:70%;
    margin-left:15%;
-   margin-right:15%;  
-   margin-bottom:100px;
+   margin-right:15%;
 }
 
 
@@ -60,14 +59,13 @@ ul.pagination {
 }
 
 .content-wrap {
-  padding-bottom: 50px;    /* Footer height */
 }
 
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 50px;  
+  height: 50px;
   text-align:center;
   background-color: black;
   color:white;
@@ -79,17 +77,17 @@ footer {
 }
 
 .row1{
-    background-color:black;
+    background-color:#9eb4cf;
     margin:0;padding:0;
     text-align:center;
     height:100px;
 }
 
 .row1 ul li{
-    color:white;
+    color:#9eb4cf;
     display: inline-block;
     margin-right:30px;
-    
+
 }
 
 .row1 ul li a{
@@ -121,7 +119,7 @@ footer {
    margin-left: -125px;
    position: absolute;
    top: 50%;
-   width: 250px;   
+   width: 250px;
    z-index:100000000000;
 }
 
@@ -169,13 +167,13 @@ footer {
     width:100%;
     max-width:200px;
     margin-left:45px;
-    float:left;    
+    float:left;
 }
 
 .slided2{
     width:100%;
     max-width:500px;
-    float:left;  
+    float:left;
     margin-left:45px;
 }
 
@@ -187,14 +185,14 @@ footer {
 }
 
 #pies{
-width: 100%; text-align:center; margin: auto; 
+width: 100%; text-align:center; margin: auto;
     background-color:white;
 }
 
 .deleteitem{
     float:left;
     background-color:red;
-    color:white;  
+    color:white;
     margin-left:20px;
 }
 
@@ -266,17 +264,17 @@ width: 100%; text-align:center; margin: auto;
 }
 @media only screen and (max-width: 768px) {
 
- 
+
  .centered > div {
    width:98%;
    margin-left:1%;
-   margin-right:1%;  
+   margin-right:1%;
 }
 
  .deletepostcom{
    width:100%;
  }
- 
+
  .leftbutton{
     float:left;
 }
@@ -291,11 +289,11 @@ width: 100%; text-align:center; margin: auto;
 }
 
 .slided2{
-    display:none;    
+    display:none;
 }
 
 
- 
+
 #can{
     height:100%;
      width:300px;
